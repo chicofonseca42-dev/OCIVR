@@ -54,18 +54,18 @@ class Rede59Activity : AppCompatActivity() {
             "59VR02" to "https://docs.google.com/spreadsheets/d/1BPN3A4xaEzli__uoG7hennU73s3C2cfv/edit?gid=1573707259",
             "59CM01" to "https://docs.google.com/spreadsheets/d/1pA70F4lfAGSZE1dUPTP4QuJvdMcXcIjR/edit?gid=1494899945",
             "59SB01" to "https://docs.google.com/spreadsheets/d/1GzlB6-cnrP5Uckgr4dCnnke6azwJ8rKZ/edit?gid=697690586",
-            "59VR03" to "https://docs.google.com/spreadsheets/d/1poNIwBTeTkrlLzNy6rDKkeC3l34BL5q0/edit?gid=1307981599",
+            "59VR03" to "https://docs.google.com/spreadsheets/d/1rTEJ_Xbd2naeeWlD3ZiQxB5V4C1ha9WEN3s48_X1Ls8/edit?gid=1307981599#gid=1307981599",
             "59CP01" to "https://docs.google.com/spreadsheets/d/1LLX_bPwUZgwrcxuaCUo3VSunydgW7eXr/edit?gid=1699604314",
             "59SD01" to "https://docs.google.com/spreadsheets/d/1PMuxpIfNGfZpXiDv4opu1UyQ6nPNFA3m/edit?gid=1159729653",
-            "59VR04" to "https://docs.google.com/spreadsheets/d/1tgph3f-6a3Qr9KPDAxfv1XDfm-Hwc9XK/edit?gid=2060761066",
+            "59VR04" to "https://docs.google.com/spreadsheets/d/1qYuc74JFRkeYxIsqQssParTYMHwRPaHQeHA29558Gnk/edit?gid=2060761066#gid=2060761066",
             "59CV01" to "https://docs.google.com/spreadsheets/d/1WIUxq3ZRJKlNppZE8bOQnvEOdhgSGsqCfdcrDanratA/edit?gid=365677335#gid=365677335",
             "59ST01" to "https://docs.google.com/spreadsheets/d/1LBTNeBpR1IaqDdojeCHL_7yruyYWewo5/edit?gid=1357713474",
-            "59VR05" to "https://docs.google.com/spreadsheets/d/1tgph3f-6a3Qr9KPDAxfv1XDfm-Hwc9XK/edit?gid=2060761066",
+            "59VR05" to "https://docs.google.com/spreadsheets/d/1OUaiMCL2Q9j_NuykdKMg81s9lDFstr-WQK90odebDtc/edit?gid=1878134753#gid=1878134753",
             "59JT01" to "https://docs.google.com/spreadsheets/d/1-mCDpqIDF4ktZcwwkLPzBHPHSvAzWdmO/edit?gid=2017794267",
             "59TS01" to "https://docs.google.com/spreadsheets/d/1-eo2oB2c804l0dRrHgUF05SOT_lNw8jq/edit?gid=1595926146",
-            "59VR06" to "https://docs.google.com/spreadsheets/d/12QMnhvJvyndtpNKeQTa_oxWrrlQohaao/edit?gid=346357645",
+            "59VR06" to "https://docs.google.com/spreadsheets/d/16BwTK92cfVMoInerIep-PJkjBSQY9A_pSUyocUZpGrI/edit?gid=346357645#gid=346357645",
             "59JU01" to "https://docs.google.com/spreadsheets/d/1ZzwLzMP_XEZAEpQvX0YfxEaCfLHZwt8S/edit?gid=62066123",
-            "59VR07" to "https://docs.google.com/spreadsheets/d/1Jy30bXCSkY5Adh87zn3CrakL9IAAZGPD/edit?gid=1541379891"
+            "59VR07" to "https://docs.google.com/spreadsheets/d/1tzzZnxXcuagn5NIvMUej50_RqGW6rkdFlQYmxaKL0Dg/edit?gid=1541379891#gid=1541379891"
         )
 
         // 👉 CRIAR BOTÕES
