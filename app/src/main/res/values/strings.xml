@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">OCIVR</string>
+
+
+    <string name="agendamentos">Agendamentos</string>
+    <string name="todos_sites">Todos os Sites</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="prevencao">Prevenção</string>
+    <string name="cpl_web">CPL WEB</string>
+    <string name="reta_sga">RETA/SGA</string>
+    <string name="netq">NETQ</string>
+    <string name="circuitos">Circuitos</string>
+    <string name="logotipo_ocivr">Logotipo OCIVR</string>
+    <string name="introduzir_numero">Introduzir número do circuito</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="botao_pesquisar_circuito">Botão pesquisar circuito</string>
+    <string name="configuracoes">Abrir configurações</string>
+
+
 </resources>

@@ -17,7 +17,7 @@
         android:src="@drawable/ic_ocivr"
         android:adjustViewBounds="true"
         android:layout_marginBottom="24dp"
-        android:contentDescription="Logotipo OCIVR" />
+        android:contentDescription="@string/logotipo_ocivr" />
 
     <!-- BLOCO CENTRAL -->
     <LinearLayout
@@ -31,7 +31,7 @@
             android:id="@+id/etNumero"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:hint="Introduzir número do circuito"
+            android:hint="@string/introduzir_numero"
             android:inputType="text"
             android:textSize="20sp"
             android:textColor="#E2E8F0"
@@ -48,14 +48,14 @@
             android:id="@+id/btnPesquisar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Pesquisar"
+            android:text="@string/pesquisar"
             android:textSize="20sp"
             android:textColor="#FFFFFF"
             android:textAllCaps="false"
             android:fontFamily="sans-serif-medium"
             android:background="@drawable/bg_button_ocivr"
             android:elevation="6dp"
-            android:contentDescription="Botão pesquisar circuito" />
+            android:contentDescription="@string/botao_pesquisar_circuito" />
 
     </LinearLayout>
 
