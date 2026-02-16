@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CadastroActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ecracorreto" />
+
+    <Button
+        android:id="@+id/rede54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:background="@android:color/transparent"
+        android:text="Rede 54"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.03"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/rede59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:background="@android:color/transparent"
+        android:text="Rede 59"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.03"
+
+
+        app:layout_constraintTop_toBottomOf="@id/rede54"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/rede76"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:background="@android:color/transparent"
+        android:text="Rede 76"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.03"
+
+
+        app:layout_constraintTop_toBottomOf="@id/rede59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:text="Voltar"
+        android:textSize="26sp"
+        android:textColor="#F0F0F0"
+
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

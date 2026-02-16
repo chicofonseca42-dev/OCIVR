@@ -1,0 +1,237 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ecracorreto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <ImageView
+        android:id="@+id/btnConfig"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_settings"
+        android:background="@drawable/bg_settings_ripple"
+        android:padding="8dp"
+        android:scaleType="centerInside"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="4dp"
+        app:tint="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <Button
+        android:id="@+id/buttonAgendamentos"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:text="Agendamentos"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.03"
+
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:text="Todos os Sites"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.03"
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonAgendamentos" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="191dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:background="@android:color/transparent"
+        android:text="Cadastro"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.02"
+
+
+
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button2" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="184dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:text="Prevenção"
+        android:textAlignment="center"
+        android:textSize="28sp"
+        android:textColor="#F0F0F0"
+
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button2" />
+
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:background="@android:color/transparent"
+        android:text="CPL WEB"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:maxLines="1"
+        android:ellipsize="none"
+        android:textColor="#F0F0F0"
+
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        android:letterSpacing="0.03"
+
+        app:layout_constraintStart_toStartOf="@id/button3"
+        app:layout_constraintEnd_toEndOf="@id/button3"
+        app:layout_constraintTop_toBottomOf="@id/button3" />
+
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:background="@android:color/transparent"
+        android:text="RETA/SGA"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:maxLines="1"
+        android:ellipsize="none"
+        android:textColor="#F0F0F0"
+
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+
+        app:layout_constraintStart_toStartOf="@id/button4"
+        app:layout_constraintEnd_toEndOf="@id/button4"
+        app:layout_constraintTop_toBottomOf="@id/button4" />
+
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:text="NETQ"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="#F0F0F0"
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:letterSpacing="0.03"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnCircuitos"
+        app:layout_constraintTop_toBottomOf="@id/button5"
+        app:layout_constraintHorizontal_weight="1"/>
+
+    <Button
+        android:id="@+id/btnCircuitos"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:text="Circuitos"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="#F0F0F0"
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+
+        app:layout_constraintStart_toEndOf="@id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/button7"
+        app:layout_constraintHorizontal_weight="1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
