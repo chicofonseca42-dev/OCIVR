@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="pt.ocivr.app" />
+                  <option name="mobileSdkAppId" value="1:507645344792:android:470c4dd036f5db4104576d" />
+                  <option name="projectId" value="ocivr-74f22" />
+                  <option name="projectNumber" value="507645344792" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
