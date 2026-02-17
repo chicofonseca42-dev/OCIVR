@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:padding="24dp"
+    android:background="#0B1E3A">
+
+    <!-- LOGO -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ocivr"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/logotipo_ocivr" />
+
+    <!-- BLOCO CENTRAL -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- CAMPO DE PESQUISA -->
+        <EditText
+            android:id="@+id/etPesquisa"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:hint="@string/introduz_id_cod_site"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:textSize="20sp"
+            android:textColor="#E2E8F0"
+            android:textColorHint="#94A3B8"
+            android:letterSpacing="0.02"
+            android:background="@drawable/bg_input_ocivr"
+            android:padding="14dp"
+            android:layout_marginBottom="16dp"
+            android:importantForAccessibility="yes"
+            android:autofillHints="username" />
+
+        <!-- BOTÃO -->
+        <Button
+            android:id="@+id/btnPesquisar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/pesquisar"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/bg_button_ocivr"
+            android:elevation="6dp" />
+
+    </LinearLayout>
+
+    <!-- RESULTADOS -->
+    <ScrollView
+        android:id="@+id/scrollResultados"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="24dp">
+
+        <LinearLayout
+            android:id="@+id/containerResultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+</LinearLayout>

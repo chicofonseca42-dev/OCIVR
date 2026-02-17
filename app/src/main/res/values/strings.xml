@@ -15,6 +15,13 @@
     <string name="pesquisar">Pesquisar</string>
     <string name="botao_pesquisar_circuito">Botão pesquisar circuito</string>
     <string name="configuracoes">Abrir configurações</string>
+    <string name="rede_movel">Rede Móvel</string>
+    <string name="rede_siresp">Rede SIRESP</string>
+    <string name="rede_fixa">Rede Fixa</string>
+    <string name="introduz_id_cod_site">Introduz ID Cod Site</string>
+    <string name="ver_no_maps">Ver no Maps</string>
+    <string name="introduz_id">Introduz um ID</string>
+    <string name="site_nao_encontrado">Site não encontrado</string>
 
 
 </resources>

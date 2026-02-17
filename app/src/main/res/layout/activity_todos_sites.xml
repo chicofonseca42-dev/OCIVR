@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top"
+    android:padding="14dp"
+    android:background="#0B1E3A">
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_ocivr"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="@string/logotipo_ocivr" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnRedeMovel"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/rede_movel"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/bg_button_ocivr"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnRedeSiresp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/rede_siresp"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/bg_button_ocivr"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/btnRedeFixa"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="@string/rede_fixa"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:background="@drawable/bg_button_ocivr"
+            android:elevation="6dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

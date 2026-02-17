@@ -20,29 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 🔹 Verificação automática da cache ao abrir
         verificarCacheAoAbrir()
 
-        // 🔹 CONFIGURAÇÕES (⚙)
+        // 🔹 CONFIGURAÇÕES
         val btnConfig = findViewById<ImageView>(R.id.btnConfig)
-
         btnConfig.setOnClickListener {
-
-            val vibrator = getSystemService(android.content.Context.VIBRATOR_SERVICE) as android.os.Vibrator
-
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                val effect = android.os.VibrationEffect.createOneShot(
-                    40,
-                    android.os.VibrationEffect.DEFAULT_AMPLITUDE
-                )
-                vibrator.vibrate(effect)
-            } else {
-                vibrator.vibrate(40)
-            }
-
             startActivity(Intent(this, ConfiguracoesActivity::class.java))
         }
-
 
         // 🔹 Agendamentos Semanais
         configurarBotaoLink(
@@ -50,11 +34,14 @@ class MainActivity : AppCompatActivity() {
             "https://docs.google.com/spreadsheets/d/1t3cZeesYG4JSvl9hoiTvMZWK5lEPpd1IHHKnS0-ZrsQ/edit?gid=1804031589#gid=1804031589"
         )
 
-        // 🔹 Todos os Sites
-        configurarBotaoLink(
-            R.id.button2,
-            "https://docs.google.com/spreadsheets/d/1MiuLS5EgRGWq8VY1CrCJ4zRlbv1Mm8Clg9QfgKZntK0/edit?gid=1220188742#gid=1220188742"
-        )
+        // 🔹 Todos os Sites (AGORA ABRE ECRÃ INTERMÉDIO)
+        val btnTodosSites = findViewById<Button>(R.id.button2)
+        btnTodosSites.setOnClickListener {
+            feedback(btnTodosSites)
+            btnTodosSites.postDelayed({
+                startActivity(Intent(this, TodosSitesActivity::class.java))
+            }, 120)
+        }
 
         // 🔹 Prevenção
         configurarBotaoLink(
@@ -99,7 +86,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 🔍 Verifica se já existe cache ao abrir a app
     private fun verificarCacheAoAbrir() {
         val ficheiroExiste = try {
             openFileInput(nomeFicheiroCache).close()
@@ -113,9 +99,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 🌐 Descarrega base automaticamente se não existir cache
     private fun descarregarBaseInicial() {
-
         val client = OkHttpClient()
         val request = Request.Builder().url(sheetUrl).build()
 
@@ -133,7 +117,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body?.string()
-
                 if (body != null) {
                     openFileOutput(nomeFicheiroCache, MODE_PRIVATE).use {
                         it.write(body.toByteArray())
@@ -143,7 +126,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    // 🔗 Função genérica para abrir links
     private fun configurarBotaoLink(buttonId: Int, url: String) {
         val btn = findViewById<Button>(buttonId)
         btn.setOnClickListener {
@@ -154,7 +136,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 👉 Feedback visual consistente
     private fun feedback(btn: Button) {
         btn.alpha = 0.6f
         btn.postDelayed({
