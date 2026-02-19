@@ -10,8 +10,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import okhttp3.*
 import java.io.IOException
+import android.view.View
+import android.widget.TextView
+import android.os.Handler
+import android.os.Looper
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.content.Context
+import android.os.Build
+
+
+
 
 class MainActivity : AppCompatActivity() {
+
+
+
+
+    private var modoProAtivo = false
+
+
+
+
+
 
     private val nomeFicheiroCache = "base_cache.csv"
     private val sheetUrl =
@@ -21,6 +42,66 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+        val logoOCIVR = findViewById<View>(R.id.logoOCIVR)
+        val txtModoPro = findViewById<TextView>(R.id.txtModoPro)
+
+
+
+
+
+
+        logoOCIVR.setOnLongClickListener {
+
+            // 🔹 Vibração subtil
+            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(
+                    VibrationEffect.createOneShot(40, VibrationEffect.DEFAULT_AMPLITUDE)
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                vibrator.vibrate(40)
+            }
+
+            // 🔹 Obter versão
+            val versionName = packageManager
+                .getPackageInfo(packageName, 0).versionName
+
+            // 🔹 Definir texto
+            txtModoPro.text = "Modo Pro | v$versionName | Francisco Fonseca"
+
+            // 🔹 Fade in
+            txtModoPro.alpha = 0f
+            txtModoPro.visibility = View.VISIBLE
+
+            txtModoPro.animate()
+                .alpha(1f)
+                .setDuration(400)
+                .start()
+
+            // 🔹 Fade out após 3 segundos
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                txtModoPro.animate()
+                    .alpha(0f)
+                    .setDuration(400)
+                    .withEndAction {
+                        txtModoPro.visibility = View.GONE
+                    }
+                    .start()
+
+            }, 3000)
+
+            true
+        }
+
+
+
+
+
         verificarCacheAoAbrir()
 
         // 🔹 CONFIGURAÇÕES
@@ -29,11 +110,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, ConfiguracoesActivity::class.java))
         }
 
+
+
         // 🔹 Agendamentos Semanais
         configurarBotaoLink(
             R.id.buttonAgendamentos,
             "https://docs.google.com/spreadsheets/d/1t3cZeesYG4JSvl9hoiTvMZWK5lEPpd1IHHKnS0-ZrsQ/edit?gid=1804031589#gid=1804031589"
         )
+
+
 
         // 🔹 Todos os Sites (AGORA ABRE ECRÃ INTERMÉDIO)
         val btnTodosSites = findViewById<Button>(R.id.button2)
@@ -44,11 +129,15 @@ class MainActivity : AppCompatActivity() {
             }, 120)
         }
 
+
+
         // 🔹 Prevenção
         configurarBotaoLink(
             R.id.button4,
             "https://docs.google.com/spreadsheets/d/1iRu6GlZ9GNlipGW2NXt17Qea-TTRKlssql5BOfWd-J4/edit?gid=1444605401#gid=1444605401"
         )
+
+
 
         // 🔹 CPL WEB
         configurarBotaoLink(
@@ -56,17 +145,23 @@ class MainActivity : AppCompatActivity() {
             "http://10.18.25.100:91/Index.aspx"
         )
 
+
+
         // 🔹 RETA / SGA
         configurarBotaoLink(
             R.id.button6,
             "http://sga.telecom.pt/cgi-bin/sgaffm.cgi/SDA1?&SZ=10&ALM=Lista+de+Alarmes"
         )
 
+
+
         // 🔹 NETQ
         configurarBotaoLink(
             R.id.button7,
             "https://netq.telecom.pt/"
         )
+
+
 
         // 🔹 CIRCUITOS
         val btnCircuitos = findViewById<Button>(R.id.btnCircuitos)
@@ -76,6 +171,8 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, PesquisaActivity::class.java))
             }, 120)
         }
+
+
 
         // 🔹 Cadastro
         val btnCadastro = findViewById<Button>(R.id.button3)
