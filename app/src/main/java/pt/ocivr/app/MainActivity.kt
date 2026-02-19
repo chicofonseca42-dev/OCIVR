@@ -1,7 +1,8 @@
 package pt.ocivr.app
 
+
+import androidx.core.net.toUri
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -90,7 +91,8 @@ class MainActivity : AppCompatActivity() {
         val ficheiroExiste = try {
             openFileInput(nomeFicheiroCache).close()
             true
-        } catch (e: Exception) {
+        } catch (_: Exception) {
+
             false
         }
 
@@ -131,7 +133,8 @@ class MainActivity : AppCompatActivity() {
         btn.setOnClickListener {
             feedback(btn)
             btn.postDelayed({
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
+
             }, 120)
         }
     }

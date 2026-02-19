@@ -1,8 +1,7 @@
 package pt.ocivr.app
-
-import android.content.Context
+import androidx.core.net.toUri
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -50,7 +49,7 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
 
             container.removeAllViews()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
             val termoDigitado = etPesquisa.text.toString().trim()
@@ -60,23 +59,27 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            buscarRede(termoDigitado) { resultado ->
+            buscarRede(termoDigitado) { resultados ->
                 runOnUiThread {
 
-                    if (resultado.isEmpty()) {
+                    if (resultados.isEmpty()) {
                         Toast.makeText(this, getString(R.string.site_nao_encontrado), Toast.LENGTH_SHORT).show()
                         return@runOnUiThread
                     }
 
-                    val card = criarCard(
-                        id = resultado["ID"] ?: "",
-                        nome = resultado["NOME"] ?: "",
-                        lat = resultado["LAT"] ?: "",
-                        lon = resultado["LON"] ?: "",
-                        mapsLink = resultado["MAPS"] ?: ""
-                    )
+                    for (resultado in resultados) {
 
-                    container.addView(card)
+                        val card = criarCard(
+                            id = resultado["ID"] ?: "",
+                            nome = resultado["NOME"] ?: "",
+                            localidade = resultado["LOCALIDADE"] ?: "",
+                            lat = resultado["LAT"] ?: "",
+                            lon = resultado["LON"] ?: "",
+                            mapsLink = resultado["MAPS"] ?: ""
+                        )
+
+                        container.addView(card)
+                    }
                 }
             }
         }
@@ -84,7 +87,7 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
 
     private fun buscarRede(
         termo: String,
-        callback: (Map<String, String>) -> Unit
+        callback: (List<Map<String, String>>) -> Unit
     ) {
 
         val cacheLocal = lerCache()
@@ -100,16 +103,21 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
         client.newCall(request).enqueue(object : Callback {
 
             override fun onFailure(call: Call, e: IOException) {
-                callback(emptyMap())
+                callback(emptyList())
             }
 
             override fun onResponse(call: Call, response: Response) {
+
                 val body = response.body?.string()
 
                 if (body != null) {
-                    guardarCache(body)
+
+                    openFileOutput(nomeFicheiroCache, MODE_PRIVATE).use {
+                        it.write(body.toByteArray())
+                    }
+
                     processarCSV(body, termo, callback)
-                } else callback(emptyMap())
+                } else callback(emptyList())
             }
         })
     }
@@ -117,46 +125,48 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
     private fun processarCSV(
         body: String,
         termo: String,
-        callback: (Map<String, String>) -> Unit
+        callback: (List<Map<String, String>>) -> Unit
     ) {
 
+        val resultados = mutableListOf<Map<String, String>>()
         val linhas = body.split("\n")
+        val termoLower = termo.lowercase()
 
         for (linha in linhas.drop(1)) {
 
             val colunas = linha.split(Regex(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)"))
             val limpa = colunas.map { it.replace("\"", "").trim() }
 
-            if (limpa.size >= 5 &&
-                limpa[0].equals(termo.trim(), ignoreCase = true)
+            if (limpa.size >= 6 &&
+                (
+                        limpa[0].lowercase().contains(termoLower) ||   // Coluna A
+                                limpa[5].lowercase().contains(termoLower)      // Coluna F (Localidade)
+                        )
             ) {
 
-                val resultado = mapOf(
-                    "ID" to limpa[0],
-                    "NOME" to limpa[1],
-                    "LAT" to limpa[2],
-                    "LON" to limpa[3],
-                    "MAPS" to limpa[4]
+                resultados.add(
+                    mapOf(
+                        "ID" to limpa[0],
+                        "NOME" to limpa[1],
+                        "LOCALIDADE" to limpa[5],
+                        "LAT" to limpa[2],
+                        "LON" to limpa[3],
+                        "MAPS" to limpa[4]
+                    )
                 )
-
-                callback(resultado)
-                return
             }
         }
 
-        callback(emptyMap())
-    }
-
-    private fun guardarCache(conteudo: String) {
-        openFileOutput(nomeFicheiroCache, MODE_PRIVATE).use {
-            it.write(conteudo.toByteArray())
-        }
+        callback(resultados)
     }
 
     private fun lerCache(): String? {
         return try {
-            openFileInput(nomeFicheiroCache).bufferedReader().use { it.readText() }
-        } catch (e: Exception) {
+            openFileInput(nomeFicheiroCache)
+                .bufferedReader()
+                .use { it.readText() }
+        } catch (_: Exception) {
+
             null
         }
     }
@@ -164,6 +174,7 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
     private fun criarCard(
         id: String,
         nome: String,
+        localidade: String,
         lat: String,
         lon: String,
         mapsLink: String
@@ -172,7 +183,7 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
         val card = CardView(this)
         card.radius = 24f
         card.cardElevation = 12f
-        card.setCardBackgroundColor(android.graphics.Color.WHITE)
+        card.setCardBackgroundColor(Color.WHITE)
 
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -187,13 +198,15 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
 
         layout.addView(criarTexto("ID: $id", true))
         layout.addView(criarTexto("Nome: $nome"))
+        layout.addView(criarTexto("Localidade: $localidade"))
         layout.addView(criarTexto("Latitude: $lat"))
         layout.addView(criarTexto("Longitude: $lon"))
 
         val btnMapa = Button(this)
         btnMapa.text = getString(R.string.ver_no_maps)
         btnMapa.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mapsLink))
+            val intent = Intent(Intent.ACTION_VIEW, mapsLink.toUri())
+
             startActivity(intent)
         }
 
@@ -206,7 +219,7 @@ class PesquisaRedeSirespActivity : AppCompatActivity() {
     private fun criarTexto(texto: String, titulo: Boolean = false): TextView {
         val tv = TextView(this)
         tv.text = texto
-        tv.setTextColor(android.graphics.Color.BLACK)
+        tv.setTextColor(Color.BLACK)
         tv.textSize = if (titulo) 18f else 16f
         if (titulo) tv.setPadding(0, 0, 0, 20)
         return tv

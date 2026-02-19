@@ -1,8 +1,9 @@
 package pt.ocivr.app
 
+import androidx.core.graphics.toColorInt
+import androidx.core.net.toUri
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -78,7 +79,7 @@ class Rede76Activity : AppCompatActivity() {
 
             val btn = Button(this).apply {
                 text = nome
-                setTextColor(Color.parseColor("#F5F5F5"))
+                setTextColor("#F5F5F5".toColorInt())
                 setBackgroundColor(Color.TRANSPARENT)
                 textSize = 16f
                 isAllCaps = false
@@ -96,7 +97,8 @@ class Rede76Activity : AppCompatActivity() {
                 feedback(btn)
                 links[nome]?.let { url ->
                     btn.postDelayed({
-                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                        Intent(Intent.ACTION_VIEW, url.toUri())
+
                     }, 120)
                 }
             }

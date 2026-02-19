@@ -1,12 +1,13 @@
 package pt.ocivr.app
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.IOException
@@ -16,22 +17,18 @@ import java.util.Locale
 
 class ConfiguracoesActivity : AppCompatActivity() {
 
-    // Circuitos
     private val nomeFicheiroCache = "base_cache.csv"
     private val sheetUrl =
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vSW12c1Df2sJq9F1vyWfBlnbVzcYhLBuzIG9CruJiTjwCxWaHO8UOYj11KX3hnGRn-yejD-r5dbe_X2/pub?gid=0&single=true&output=csv"
 
-    // Rede Móvel
     private val sheetUrlMovel =
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOTDRMPpRIaj-TZCXRtO_2bZhnqdFxyua9ZvKdlG5tZ12PYHKxXfWcxKItuM4HUxJMl4mqjRaol7i_/pub?gid=1608582643&single=true&output=csv"
     private val ficheiroMovel = "rede_movel_cache.csv"
 
-    // Rede SIRESP
     private val sheetUrlSiresp =
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOTDRMPpRIaj-TZCXRtO_2bZhnqdFxyua9ZvKdlG5tZ12PYHKxXfWcxKItuM4HUxJMl4mqjRaol7i_/pub?gid=293131231&single=true&output=csv"
     private val ficheiroSiresp = "rede_siresp_cache.csv"
 
-    // Rede Fixa
     private val sheetUrlFixa =
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vTOTDRMPpRIaj-TZCXRtO_2bZhnqdFxyua9ZvKdlG5tZ12PYHKxXfWcxKItuM4HUxJMl4mqjRaol7i_/pub?gid=836241093&single=true&output=csv"
     private val ficheiroFixa = "rede_fixa_cache.csv"
@@ -39,7 +36,6 @@ class ConfiguracoesActivity : AppCompatActivity() {
     private lateinit var txtUltimaAtualizacao: TextView
     private lateinit var txtEstadoBase: TextView
     private lateinit var txtTotalRegistos: TextView
-
     private lateinit var txtCircuitos: TextView
     private lateinit var txtMovel: TextView
     private lateinit var txtSiresp: TextView
@@ -52,7 +48,6 @@ class ConfiguracoesActivity : AppCompatActivity() {
         txtUltimaAtualizacao = findViewById(R.id.txtUltimaAtualizacao)
         txtEstadoBase = findViewById(R.id.txtEstadoBase)
         txtTotalRegistos = findViewById(R.id.txtTotalRegistos)
-
         txtCircuitos = findViewById(R.id.txtCircuitos)
         txtMovel = findViewById(R.id.txtMovel)
         txtSiresp = findViewById(R.id.txtSiresp)
@@ -64,18 +59,20 @@ class ConfiguracoesActivity : AppCompatActivity() {
         atualizarTextoData()
         verificarEstadoBase()
 
-        btnAtualizarBase.setOnClickListener {
-            atualizarBase()
-        }
+        btnAtualizarBase.setOnClickListener { atualizarBase() }
 
         btnLimparCache.setOnClickListener {
-
             deleteFile(nomeFicheiroCache)
             deleteFile(ficheiroMovel)
             deleteFile(ficheiroSiresp)
             deleteFile(ficheiroFixa)
 
-            Toast.makeText(this, "Todas as bases apagadas", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                getString(R.string.todas_bases_apagadas),
+                Toast.LENGTH_SHORT
+            ).show()
+
             verificarEstadoBase()
         }
     }
@@ -85,10 +82,10 @@ class ConfiguracoesActivity : AppCompatActivity() {
         val client = OkHttpClient()
 
         val bases = listOf(
-            Pair(sheetUrl, nomeFicheiroCache),
-            Pair(sheetUrlMovel, ficheiroMovel),
-            Pair(sheetUrlSiresp, ficheiroSiresp),
-            Pair(sheetUrlFixa, ficheiroFixa)
+            sheetUrl to nomeFicheiroCache,
+            sheetUrlMovel to ficheiroMovel,
+            sheetUrlSiresp to ficheiroSiresp,
+            sheetUrlFixa to ficheiroFixa
         )
 
         var concluido = 0
@@ -103,7 +100,7 @@ class ConfiguracoesActivity : AppCompatActivity() {
                     runOnUiThread {
                         Toast.makeText(
                             this@ConfiguracoesActivity,
-                            "Erro ao atualizar uma das bases",
+                            getString(R.string.erro_atualizar_base),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -123,16 +120,19 @@ class ConfiguracoesActivity : AppCompatActivity() {
 
                     if (concluido == bases.size) {
 
-                        val formato = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                        val formato =
+                            SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                         val data = formato.format(Date())
+
                         guardarDataAtualizacao(data)
 
                         runOnUiThread {
                             atualizarTextoData()
                             verificarEstadoBase()
+
                             Toast.makeText(
                                 this@ConfiguracoesActivity,
-                                "Todas as bases atualizadas com sucesso",
+                                getString(R.string.bases_atualizadas_sucesso),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -159,36 +159,82 @@ class ConfiguracoesActivity : AppCompatActivity() {
                 openFileInput(base.first).close()
                 true
             } catch (e: Exception) {
+                e.printStackTrace()
                 false
             }
 
             if (existe) {
-                base.second.text = "✅ ${base.third}: OK"
-                base.second.setTextColor(Color.parseColor("#4CAF50"))
+                base.second.text =
+                    getString(R.string.base_ok, base.third)
+
+                base.second.setTextColor(
+                    ContextCompat.getColor(this, R.color.verde_sucesso)
+                )
+
                 basesProntas++
             } else {
-                base.second.text = "❌ ${base.third}: Em falta"
-                base.second.setTextColor(Color.parseColor("#F44336"))
+                base.second.text =
+                    getString(R.string.base_falta, base.third)
+
+                base.second.setTextColor(
+                    ContextCompat.getColor(this, R.color.cinza_inativo)
+                )
             }
         }
 
-        if (basesProntas == bases.size) {
-            txtEstadoBase.text = "🟢 Bases prontas ($basesProntas/4)"
-            txtEstadoBase.setTextColor(Color.parseColor("#4CAF50"))
-        } else if (basesProntas > 0) {
-            txtEstadoBase.text = "🟡 Bases parciais ($basesProntas/4)"
-            txtEstadoBase.setTextColor(Color.parseColor("#FFC107"))
-        } else {
-            txtEstadoBase.text = "🔴 Nenhuma base disponível (0/4)"
-            txtEstadoBase.setTextColor(Color.parseColor("#F44336"))
+        when {
+            basesProntas == bases.size -> {
+                txtEstadoBase.text =
+                    getString(R.string.estado_prontas, basesProntas)
+
+                txtEstadoBase.setTextColor(
+                    ContextCompat.getColor(this, R.color.verde_sucesso)
+                )
+            }
+
+            basesProntas > 0 -> {
+                txtEstadoBase.text =
+                    getString(R.string.estado_parciais, basesProntas)
+
+                txtEstadoBase.setTextColor(
+                    ContextCompat.getColor(this, R.color.amarelo_aviso)
+                )
+            }
+
+            else -> {
+                txtEstadoBase.text =
+                    getString(R.string.estado_nenhuma)
+
+                txtEstadoBase.setTextColor(
+                    ContextCompat.getColor(this, R.color.vermelho_erro)
+                )
+            }
         }
 
-        txtTotalRegistos.text = ""
+        try {
+            val linhas = openFileInput(nomeFicheiroCache)
+                .bufferedReader()
+                .readLines()
+
+            val total = if (linhas.isNotEmpty()) linhas.size - 1 else 0
+
+            txtTotalRegistos.text =
+                getString(R.string.circuitos_total, total)
+
+        } catch (e: Exception) {
+            txtTotalRegistos.text =
+                getString(R.string.circuitos_vazio)
+            e.printStackTrace()
+        }
     }
 
     private fun guardarDataAtualizacao(data: String) {
         val prefs = getSharedPreferences("config", Context.MODE_PRIVATE)
-        prefs.edit().putString("ultima_atualizacao", data).apply()
+
+
+        prefs.edit {
+            putString("ultima_atualizacao", data)
+        }
     }
 
     private fun obterDataAtualizacao(): String {
@@ -196,8 +242,12 @@ class ConfiguracoesActivity : AppCompatActivity() {
         return prefs.getString("ultima_atualizacao", "--") ?: "--"
     }
 
+
     private fun atualizarTextoData() {
         txtUltimaAtualizacao.text =
-            "Última atualização: ${obterDataAtualizacao()}"
+            getString(
+                R.string.ultima_atualizacao,
+                obterDataAtualizacao()
+            )
     }
 }

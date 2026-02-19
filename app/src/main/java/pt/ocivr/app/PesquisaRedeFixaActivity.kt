@@ -1,9 +1,8 @@
 package pt.ocivr.app
 
-import android.content.Context
+import androidx.core.net.toUri
 import android.content.Intent
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -52,7 +51,7 @@ class PesquisaRedeFixaActivity : AppCompatActivity() {
 
             container.removeAllViews()
 
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
             val termoDigitado = etPesquisa.text.toString().trim()
@@ -135,7 +134,8 @@ class PesquisaRedeFixaActivity : AppCompatActivity() {
             openFileInput(nomeFicheiroCache)
                 .bufferedReader()
                 .use { it.readText() }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
+
             null
         }
     }
@@ -208,7 +208,8 @@ class PesquisaRedeFixaActivity : AppCompatActivity() {
         val btnMapa = Button(this)
         btnMapa.text = "Ver no Maps"
         btnMapa.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mapsLink))
+            val intent = Intent(Intent.ACTION_VIEW, mapsLink.toUri())
+
             startActivity(intent)
         }
 

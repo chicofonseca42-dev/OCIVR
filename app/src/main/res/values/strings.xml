@@ -22,6 +22,19 @@
     <string name="ver_no_maps">Ver no Maps</string>
     <string name="introduz_id">Introduz um ID</string>
     <string name="site_nao_encontrado">Site não encontrado</string>
+    <string name="todas_bases_apagadas">Todas as bases apagadas</string>
+    <string name="erro_atualizar_base">Erro ao atualizar uma das bases</string>
+    <string name="bases_atualizadas_sucesso">Todas as bases atualizadas com sucesso</string>
+    <string name="base_ok">✅ %1$s: OK</string>
+    <string name="base_falta">❌ %1$s: --</string>
+    <string name="estado_prontas">🟢 Bases prontas (%1$d/4)</string>
+    <string name="estado_parciais">🟡 Bases parciais (%1$d/4)</string>
+    <string name="estado_nenhuma">🔴 Nenhuma base disponível (0/4)</string>
+    <string name="circuitos_total">Circuitos: %1$d registos</string>
+    <string name="circuitos_vazio">Circuitos: --</string>
+    <string name="ultima_atualizacao">Última atualização: %1$s</string>
+
+
 
 
 </resources>

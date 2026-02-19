@@ -1,6 +1,5 @@
 package pt.ocivr.app
 
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -38,7 +37,7 @@ class PesquisaActivity : AppCompatActivity() {
         btnPesquisar.setOnClickListener {
 
             // Fechar teclado
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
 
             val numeroDigitado = etNumero.text.toString().trim()
@@ -175,7 +174,8 @@ class PesquisaActivity : AppCompatActivity() {
     private fun lerCache(): String? {
         return try {
             openFileInput(nomeFicheiroCache).bufferedReader().use { it.readText() }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
+
             null
         }
     }
