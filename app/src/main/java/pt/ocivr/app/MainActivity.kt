@@ -44,6 +44,15 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+        configurarBotaoActivity(
+            R.id.buttonTesteCards,
+            AgendamentosTesteActivity::class.java
+        )
+
+
+
         val logoOCIVR = findViewById<View>(R.id.logoOCIVR)
         val txtModoPro = findViewById<TextView>(R.id.txtModoPro)
 
@@ -235,6 +244,25 @@ class MainActivity : AppCompatActivity() {
             }, 120)
         }
     }
+
+
+
+
+
+    private fun configurarBotaoActivity(buttonId: Int, activity: Class<*>) {
+        val btn = findViewById<Button>(buttonId)
+        btn.setOnClickListener {
+            feedback(btn)
+            btn.postDelayed({
+                startActivity(Intent(this, activity))
+            }, 120)
+        }
+    }
+
+
+
+
+
 
     private fun feedback(btn: Button) {
         btn.alpha = 0.6f

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Título do dia -->
+    <TextView
+        android:id="@+id/textDiaTopo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="0dp"
+        android:paddingBottom="2dp"
+        android:textSize="26sp"
+        android:textColor="#2C2C2C"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textStyle="bold"/>
+
+    <!-- Lista de trabalhos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewTrabalhos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

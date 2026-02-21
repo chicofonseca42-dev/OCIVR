@@ -33,8 +33,8 @@
     <string name="circuitos_total">Circuitos: %1$d registos</string>
     <string name="circuitos_vazio">Circuitos: --</string>
     <string name="ultima_atualizacao">Última atualização: %1$s</string>
-
-
+    <string name="semana_atual">Semana Atual</string>
+    <string name="turno_tarde">TARDE</string>
 
 
 </resources>

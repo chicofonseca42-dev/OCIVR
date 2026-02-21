@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
 
+
     <ImageView
         android:id="@+id/bgImage"
         android:layout_width="0dp"
@@ -174,7 +175,7 @@
         android:id="@+id/button5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
         android:text="@string/cpl_web"
         android:textAlignment="center"
@@ -200,7 +201,7 @@
         android:id="@+id/button6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
         android:text="@string/reta_sga"
         android:textAlignment="center"
@@ -224,7 +225,7 @@
         android:id="@+id/button7"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:background="@android:color/transparent"
@@ -263,5 +264,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/button7"
         app:layout_constraintHorizontal_weight="1"/>
+
+
+    <Button
+        android:id="@+id/buttonTesteCards"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:text="@string/semana_atual"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="#F0F0F0"
+        android:shadowColor="#E0000000"
+        android:shadowDx="1.5"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:letterSpacing="0.03"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button7"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
