@@ -56,6 +56,27 @@ class ConfiguracoesActivity : AppCompatActivity() {
         val btnAtualizarBase = findViewById<Button>(R.id.btnAtualizarBase)
         val btnLimparCache = findViewById<Button>(R.id.btnLimparCache)
 
+
+
+
+        val btnSouMeo = findViewById<Button>(R.id.btnSouMeo)
+
+        btnSouMeo.setOnClickListener {
+
+            val intent = packageManager.getLaunchIntentForPackage("pt.meo.and.soumeo")
+
+            if (intent != null) {
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "App souMEO não instalada", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+
+
+
+
         atualizarTextoData()
         verificarEstadoBase()
 
